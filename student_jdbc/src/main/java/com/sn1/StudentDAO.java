@@ -27,7 +27,7 @@ public class StudentDAO {
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM student");
 
-        List<Employee> list = new ArrayList<>();
+        List<Student> list = new ArrayList<>();
         while (rs.next()) {
             Student s = new Student();
             s.setId(rs.getInt("id"));
@@ -63,13 +63,13 @@ public class StudentDAO {
         conn.close();
     }	
 	public boolean exists(int id) throws Exception{
-		Connection con = getConnection();
+		Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
 		String sql = "SELECT id from student where id=?";
-		preparedStatement ps = con.prepareStatement(sql);
+		PreparedStatement ps = conn.prepareStatement(sql);
 		ps.setInt(1,id);
 		ResultSet rs = ps.executeQuery();
 		boolean present = rs.next();
-		con.close();
+		conn.close();
 		return present;
 	}
 }
