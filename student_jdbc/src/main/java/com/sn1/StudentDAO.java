@@ -61,5 +61,15 @@ public class StudentDAO {
         stmt.setInt(4, stu.getId());
         stmt.executeUpdate();
         conn.close();
-    }		
+    }	
+	public boolean exists(int id) throws Exception{
+		Connection con = getConnection();
+		String sql = "SELECT id from student where id=?";
+		preparedStatement ps = con.prepareStatement(sql);
+		ps.setInt(1,id);
+		ResultSet rs = ps.executeQuery();
+		boolean present = rs.next();
+		con.close();
+		return present;
+	}
 }

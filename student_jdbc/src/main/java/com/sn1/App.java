@@ -1,23 +1,32 @@
 package com.sn1;
 
-/**
- * Hello world!
- *
- */
+import java.util.*;
+
 public class App {
+
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
         try {
             StudentDAO dao = new StudentDAO();
 
-            // Add employee
-            Student s1 = new Student("suhas",IV, CSE);
-            dao.addStudent(s1);
-            System.out.println("Student Added Successfully!");
+            while (true) {
+                System.out.println("\n===== STUDENT MENU =====");
+                System.out.println("1. Insert student");
+                System.out.println("2. Update student");
+                System.out.println("3. Delete student");
+                System.out.println("4. Select student");
+                System.out.println("5. Exit");
+                System.out.print("Enter your option: ");
 
-            // Fetch employees
-            List<Student> students = dao.getAllStudents();
-            for (Student s : students) {
-                System.out.println(s);
+                int option = sc.nextInt();
+                sc.nextLine(); // consume newline
+
+                switch (option) {
+
+                    case 1:
+                        Student s = new Student();
+                        
             }
 
         } catch (Exception e) {
